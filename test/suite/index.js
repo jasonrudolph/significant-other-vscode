@@ -7,6 +7,15 @@ function run() {
   const mocha = new Mocha({
     ui: "tdd",
     color: true,
+    reporter: "mocha-multi-reporters",
+    reporterOptions: {
+      reporterEnabled: "spec, mocha-junit-reporter",
+      mochaJunitReporterReporterOptions: {
+        jenkinsMode: true,
+        rootSuiteTitle: process.platform, // Distinquish Linux runs from macOS runs when analyzing for flakiness in BuildPulse
+        suiteTitleSeparatedBy: " > ",
+      },
+    },
   })
 
   const testsRoot = path.resolve(__dirname, "..")
