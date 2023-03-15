@@ -88,7 +88,8 @@ class Matchmaker {
     const directoryPattern = this.directoryPattern(partialMatcheePath)
 
     const basenamePattern = this.basenamePattern(relativeMatcheePath)
-    const extensionPattern = pathUtils.extname(relativeMatcheePath)
+    const ext_name = pathUtils.extname(relativeMatcheePath)
+    const extensionPattern = this.altExtensionPattern(ext_name)
     const filenamePattern = `${basenamePattern}${extensionPattern}`
     const pattern = [directoryPattern, filenamePattern].join(pathUtils.sep)
 
@@ -103,6 +104,39 @@ class Matchmaker {
       )
     } else {
       return null
+    }
+  }
+
+  // Internal: Use Alternate File Extension for Test versus Implementation
+  //
+  // * `ext_name` A {String} representing the File Name Extension for
+  //   the path a complementary file is being sought for.
+  //
+  // Example:
+  //
+  //   this.altExtensionPattern('.ex')
+  //   # => '.exs'
+  //
+  //   this.altExtensionPattern('.exs')
+  //   # => '.ex'
+  //
+  //   this.altExtensionPattern('.rb')
+  //   # => '.rb'
+  //
+  // Returns a {String}.
+  //   * defaults to return the given value if no alternate.
+  altExtensionPattern(ext_name) {
+    switch(ext_name) {
+       case '.ex': {
+          return '.exs'
+       }
+       case '.exs': {
+          return '.ex'
+       }
+       default: {
+          // No known alternate: Return given value.
+          return ext_name
+       }
     }
   }
 
