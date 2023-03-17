@@ -132,6 +132,39 @@ suite("finding the complementary path for a file", () => {
     ])
   })
 
+  suite("in a basic Elixir app", () => {
+    // Tests for Elixir (.EX) are in Elixir scripts (.EXS)
+    suiteSetup(() => {
+      const filePaths = [
+        "README.md",
+        "config/test.exs",
+        "lib/simple.ex",
+        "lib/app_name/some_thing.ex",
+        "lib/app_name/mod_name/mod_name.ex",
+        "test/test_helper.exs",
+        "test/simple_test.exs",
+        "test/app_name/some_thing_test.exs",
+        "test/app_name/mod_name/mod_name_test.exs",
+      ]
+      setupDirectoryContents(workspaceFolderPath, filePaths)
+    })
+
+    testMatchingFor([
+      {
+        srcPath: "lib/simple.ex",
+        testPath: "test/simple_test.exs",
+      },
+      {
+        srcPath: "lib/app_name/some_thing.ex",
+        testPath: "test/app_name/some_thing_test.exs",
+      },
+      {
+        srcPath: "lib/app_name/mod_name/mod_name.ex",
+        testPath: "test/app_name/mod_name/mod_name_test.exs",
+      },
+    ])
+  })
+
   suite("in a typical VS Code extension", () => {
     suiteSetup(() => {
       let filePaths = [
