@@ -3,7 +3,7 @@
   "displayName": "Significant Other",
   "description": "Quickly switch between a source file and its corresponding test file",
   "publisher": "jasonrudolph",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "engines": {
     "vscode": "^1.64.0"
   },
