@@ -132,7 +132,6 @@ suite("finding the complementary path for a file", () => {
     ])
   })
 
-
   suite("in a basic Elixir app", () => {
     // Tests for Elixir (.EX) are in Elixir scripts (.EXS)
     suiteSetup(() => {
