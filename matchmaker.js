@@ -83,7 +83,7 @@ class Matchmaker {
     const relativeMatcheePath = vscode.workspace.asRelativePath(matcheePath)
     const partialMatcheePath = this.withoutLeadingDirectory(
       relativeMatcheePath,
-      leadingDirectoriesToExclude
+      leadingDirectoriesToExclude,
     )
     const directoryPattern = this.directoryPattern(partialMatcheePath)
 
@@ -100,7 +100,7 @@ class Matchmaker {
     } else if (this.hasDirectory(partialMatcheePath)) {
       return this.findComplementaryPath(
         matcheePath,
-        leadingDirectoriesToExclude + 1
+        leadingDirectoriesToExclude + 1,
       )
     } else {
       return null
@@ -169,7 +169,7 @@ class Matchmaker {
   withoutLeadingDirectory(path, leadingDirectoriesToExclude = 1) {
     const directoriesInPath = pathUtils.dirname(path).split(pathUtils.sep)
     const subdirectoriesInPath = directoriesInPath.slice(
-      leadingDirectoriesToExclude
+      leadingDirectoriesToExclude,
     )
     const basename = pathUtils.basename(path)
 

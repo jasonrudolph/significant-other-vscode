@@ -16,7 +16,10 @@ async function main() {
 
     // Create a temp dir for use as the workspace folder
     const workspacePath = fs.mkdtempSync(
-      path.join(fs.realpathSync(os.tmpdir()), "significant-other-test-fixture-")
+      path.join(
+        fs.realpathSync(os.tmpdir()),
+        "significant-other-test-fixture-",
+      ),
     )
 
     // Download VS Code, unzip it and run the integration test

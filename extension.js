@@ -6,7 +6,7 @@ const vscode = require("vscode")
  */
 function activate(context) {
   context.subscriptions.push(
-    vscode.commands.registerCommand("significant-other.toggle", toggle)
+    vscode.commands.registerCommand("significant-other.toggle", toggle),
   )
 }
 
@@ -16,7 +16,7 @@ async function toggle() {
   const activeTextEditor = vscode.window.activeTextEditor
   if (!activeTextEditor) {
     vscode.window.showErrorMessage(
-      "Whoops. You need to open a text file first."
+      "Whoops. You need to open a text file first.",
     )
     return
   }
